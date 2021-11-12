@@ -1,8 +1,6 @@
 .body {
     font-family: 'Roboto', sans-serif;
     background-color: #e5e5e5;
-
-
 }
 
 .caixa {
@@ -42,7 +40,6 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
 }
 
 input::placeholder {
@@ -50,7 +47,6 @@ input::placeholder {
     width: auto;
     text-align: left;
     color: #CECECE;
-    
  }
 
 .caixa-enviar-mensagem .icone-enviar ion-icon {
@@ -58,4 +54,14 @@ input::placeholder {
     height: 26px;
 }
 
+.mensagem-status {
+    background-color: #DCDCDC;
+}
 
+.mensagem-privada {
+    background-color: #FFDEDE;
+}
+
+.mensagem-normal {
+    background-color: #ffffff;
+}
