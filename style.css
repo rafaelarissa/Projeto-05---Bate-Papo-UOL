@@ -60,8 +60,6 @@ main .mensagens {
     
     gap: 4px;
     font-size: 14px;
-
-
 }
 
 .caixa-enviar-mensagem {
@@ -72,7 +70,6 @@ main .mensagens {
     align-items: center;
 
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
-
 }
 
 input {
@@ -104,14 +101,14 @@ input::placeholder {
 }
 
 .message {
-    background-color: #FFDEDE;
+    background-color: #ffffff;
     border-radius: 2px;
 
     padding: 12px;
 }
 
 .private-message {
-    background-color: #ffffff;
+    background-color:  #FFDEDE;
     border-radius: 2px;
 
     padding: 12px;
