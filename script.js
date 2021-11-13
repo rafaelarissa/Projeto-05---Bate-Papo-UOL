@@ -22,11 +22,12 @@ function trataErro(erro) {
         alert("Nome já utilizado");
         entrarNoChat();
     }
-
 }
 
 function gerarMensagens(resposta) {
     const dados = resposta.data;
+    console.log(dados);
+
     const mensagens = document.querySelector(".mensagens");
     mensagens.innerHTML = ' ';
 
@@ -56,6 +57,13 @@ function gerarMensagens(resposta) {
 
 }
 
+function manterConexao() {
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/status', {name: nome});
+    
+    promessa.then(sucesso);
+}
+
+setInterval(manterConexao, 5000);
 setInterval(sucesso, 3000);
 
 
