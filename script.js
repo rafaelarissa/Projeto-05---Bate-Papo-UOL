@@ -20,13 +20,16 @@ function trataErro(erro) {
 
     if (erro.response.status === 400) {
         alert("Nome já utilizado");
-        entrarNoChat();
     }
+    else {
+        window.location.reload();
+    }
+    entrarNoChat();
 }
 
 function gerarMensagens(resposta) {
     const dados = resposta.data;
-    console.log(dados);
+    // console.log(dados);
 
     const mensagens = document.querySelector(".mensagens");
     mensagens.innerHTML = ' ';
@@ -61,7 +64,28 @@ function manterConexao() {
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/status', {name: nome});
     
     promessa.then(sucesso);
+    promessa.catch(trataErro);
 }
+
+function enviarMensagem() {
+    console.log("envio mensagem");
+
+    const inputNovaMensagem = document.querySelector(".nova-mensagem");
+    
+    const novaMensagem = {
+        from: nome,
+        to: "Todos",
+        text: inputNovaMensagem.value,
+        type: "message" // ou "private_message" para o bônus
+    }  
+    inputNovaMensagem.value = " ";
+
+    console.log(novaMensagem);
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages', novaMensagem);
+    
+    promessa.then(sucesso);
+}
+
 
 setInterval(manterConexao, 5000);
 setInterval(sucesso, 3000);
