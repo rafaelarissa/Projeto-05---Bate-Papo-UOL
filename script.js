@@ -1,13 +1,13 @@
 let nome = ' ';
 
-function entrarNoChat(login, chat) {
-    const login = document.querySelector(login); 
-    const chat = document.querySelector(chat);
+function entrarNoChat(tela1, tela2) {
+    const login = document.querySelector(tela1); 
+    const chat = document.querySelector(tela2);
 
     login.classList.add("escondido");
     chat.classList.remove("escondido");
 
-    nome = document.querySelector('.nome').value;
+    nome = document.querySelector(".nome").value;
 
     // nome = prompt('Qual o seu nome?');
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', { name: nome });
@@ -15,7 +15,7 @@ function entrarNoChat(login, chat) {
     promessa.then(sucesso);
     promessa.catch(trataErro);
 }
-entrarNoChat();
+// entrarNoChat();
 
 function sucesso() {
     const promessa = axios.get('https://mock-api.driven.com.br/api/v4/uol/messages');

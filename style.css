@@ -71,7 +71,7 @@ header {
 
 header .logo img {
     width: 75px;
-    height: 70px;
+    height: 53px;
 
     left: 22px;
     position: relative;
@@ -174,4 +174,4 @@ main .mensagens {
 
 .escondido {
     display: none;
-  }
+}
