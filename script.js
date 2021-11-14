@@ -72,8 +72,14 @@ function manterConexao() {
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/status', {name: nome});
     
     promessa.then(sucesso);
-    promessa.catch(trataErro);
+    // promessa.catch(trataErro);
 }
+
+document.addEventListener('keypress', function(e){
+    if(e.which == 13){
+      enviarMensagem();
+    }
+  }, false);
 
 function enviarMensagem() {
     console.log("envio mensagem");
@@ -82,7 +88,7 @@ function enviarMensagem() {
     
     const novaMensagem = {
         from: nome,
-        to: "Todos",
+        to: "todos",
         text: inputNovaMensagem.value,
         type: "message" // ou "private_message" para o bônus
     }  
