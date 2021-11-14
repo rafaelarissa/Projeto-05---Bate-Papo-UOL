@@ -3,10 +3,52 @@
     background-color: #e5e5e5;
 }
 
-.tela-login {
-    
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.login .logo {
+    margin-top: 72px;
+    margin-bottom: 94px;
+}
+
+.login input {
+    background-color: #FFFFFF;
+    
+    width: 261px;
+    height: 54px;
+    left: 57px;
+    top: 258px;
+    margin-bottom: 15px; 
+    
+    border: 1px solid #D7D7D7;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+.login input::placeholder {
+    font-size: 18px;
+    line-height: 25px;
+
+    text-align: center;
+    color: #AEAEAE;
+}
+
+.login button {
+    width: 109px;
+    height: 45px;
+    left: 133px;
+    top: 327px;
+
+    background: #E7E7E7;
+    border-radius: 9px;
+    border-style: hidden;
+
+    font-size: 18px;
+    color: #696969;
+
+}
 .caixa {
     background-color: #ffffff;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
@@ -78,12 +120,12 @@ main .mensagens {
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
 }
 
-input {
+.chat input {
     border: none;
     margin-left: 17px;
 }
 
-input::placeholder {
+.chat input::placeholder {
     height: auto;
     width: auto;
     text-align: left;
@@ -129,3 +171,7 @@ input::placeholder {
 .usuario {
     font-weight: bold;
 }
+
+.escondido {
+    display: none;
+  }

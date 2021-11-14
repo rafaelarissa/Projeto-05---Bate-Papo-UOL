@@ -1,7 +1,15 @@
 let nome = ' ';
 
-function entrarNoChat() {
-    nome = prompt('Qual o seu nome?');
+function entrarNoChat(login, chat) {
+    const login = document.querySelector(login); 
+    const chat = document.querySelector(chat);
+
+    login.classList.add("escondido");
+    chat.classList.remove("escondido");
+
+    nome = document.querySelector('.nome').value;
+
+    // nome = prompt('Qual o seu nome?');
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', { name: nome });
 
     promessa.then(sucesso);
