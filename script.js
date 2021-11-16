@@ -1,21 +1,21 @@
 let nome = ' ';
 
 function entrarNoChat(tela1, tela2) {
-    const login = document.querySelector(tela1); 
+    const login = document.querySelector(tela1);
     const chat = document.querySelector(tela2);
-
-    login.classList.add("escondido");
-    chat.classList.remove("escondido");
 
     nome = document.querySelector(".nome").value;
 
-    // nome = prompt('Qual o seu nome?');
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', { name: nome });
 
-    promessa.then(sucesso);
-    promessa.catch(trataErro);
+    promessa.then(()=>{
+        sucesso();
+        login.classList.add("escondido");
+        chat.classList.remove("escondido");
+        setInterval(manterConexao, 5000);
+    });
+    promessa.catch(trataErroNome);
 }
-// entrarNoChat();
 
 function sucesso() {
     const promessa = axios.get('https://mock-api.driven.com.br/api/v4/uol/messages');
@@ -23,21 +23,19 @@ function sucesso() {
     promessa.then(gerarMensagens);
 }
 
-function trataErro(erro) {
-    console.log(erro.response);
-
+function trataErroNome(erro) {
     if (erro.response.status === 400) {
         alert("Nome já utilizado");
     }
-    else {
-        window.location.reload();
-    }
+}
+
+function trataErroAusente(erro) {
+    window.location.reload();
     entrarNoChat();
 }
 
 function gerarMensagens(resposta) {
     const dados = resposta.data;
-    // console.log(dados);
 
     const mensagens = document.querySelector(".mensagens");
     mensagens.innerHTML = ' ';
@@ -69,39 +67,34 @@ function gerarMensagens(resposta) {
 }
 
 function manterConexao() {
-    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/status', {name: nome});
-    
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/status', { name: nome });
+
     promessa.then(sucesso);
-    // promessa.catch(trataErro);
+    promessa.catch(trataErroAusente);
 }
 
-document.addEventListener('keypress', function(e){
-    if(e.which == 13){
-      enviarMensagem();
+document.addEventListener('keypress', function (e) {
+    if (e.which == 13) {
+        enviarMensagem();
     }
-  }, false);
+}, false);
 
 function enviarMensagem() {
-    console.log("envio mensagem");
-
     const inputNovaMensagem = document.querySelector(".nova-mensagem");
-    
+
     const novaMensagem = {
         from: nome,
         to: "todos",
         text: inputNovaMensagem.value,
-        type: "message" // ou "private_message" para o bônus
-    }  
-    inputNovaMensagem.value = " ";
+        type: "message"
+    }
+    inputNovaMensagem.value = "";
 
-    console.log(novaMensagem);
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages', novaMensagem);
-    
+
     promessa.then(sucesso);
 }
 
-
-setInterval(manterConexao, 5000);
 setInterval(sucesso, 3000);
 
 
